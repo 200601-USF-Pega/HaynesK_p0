@@ -1,8 +1,9 @@
-package com.revature.neverAgian.Models;
+package com.revature.neveragain.Models;
 
-import java.util.Objects;
+import java.io.Serializable;
 
-public class Log {
+public class Log implements Serializable {
+
     private String restaurantName;
     private String category;
     private String address;
@@ -13,18 +14,13 @@ public class Log {
     public Log() {
     }
 
-    public Log(String restaurantName, int rank, String comment) {
-        super();
-        this.restaurantName = restaurantName;
-        this.rank = rank;
-        this.comment = comment;
-    }
-
     public Log(String restaurantName, String category, String address, String city, int rank, String comment) {
-        this(restaurantName,rank,comment);
+        this.restaurantName = restaurantName;
         this.category = category;
         this.address = address;
         this.city = city;
+        this.rank = rank;
+        this.comment = comment;
     }
 
     public String getRestaurantName() {
@@ -39,9 +35,7 @@ public class Log {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
+    public void setCategory(String category) { this.category = category; }
 
     public String getAddress() {
         return address;
@@ -85,23 +79,5 @@ public class Log {
                 ", rank=" + rank +
                 ", comment='" + comment + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Log)) return false;
-        Log log = (Log) o;
-        return rank == log.rank &&
-                Objects.equals(restaurantName, log.restaurantName) &&
-                Objects.equals(category, log.category) &&
-                Objects.equals(address, log.address) &&
-                Objects.equals(city, log.city) &&
-                Objects.equals(comment, log.comment);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(restaurantName, category, address, city, rank, comment);
     }
 }
